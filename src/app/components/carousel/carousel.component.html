@@ -1,31 +1,25 @@
-<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-            aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-            aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-            aria-label="Slide 3"></button>
+<div *ngIf="headlines" style="width: 100%; height: 500px;">
+    <carousel [noWrap]="noWrapSlides" [showIndicators]="showIndicator">
+        <slide *ngFor="let slide of headlines.articles; let index=index">
+            <img [src]="slide.urlToImage" alt="image slide" style="display: block; width: 100%;">
+            <a [href]="slide.url">
+                <div class="carousel-caption">
+                    <h4>{{slide.title}}</h4>
+                    <p>({{slide.author}}) {{slide.publishedAt}}</p>
+                </div>
+            </a>
+        </slide>
+    </carousel>
+    <br />
+    <div>
+        
     </div>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="..." class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-            <img src="..." class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-            <img src="..." class="d-block w-100" alt="...">
-        </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-        data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-        data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
 </div>
+
+<button type="button" (click)="getHeadlinesUA()">Fetch Headlines</button>
+<button type="button" (click)="getBusinessUA()">Fetch Business</button>
+<button type="button" (click)="getEntertainmentUA()">Fetch Entertainment</button>
+<button type="button" (click)="getHealthUA()">Fetch Health</button>
+<button type="button" (click)="getScienceUA()">Fetch Science</button>
+<button type="button" (click)="getSportsUA()">Fetch Sports</button>
+<button type="button" (click)="getTechnologyUA()">Fetch Technology</button>
